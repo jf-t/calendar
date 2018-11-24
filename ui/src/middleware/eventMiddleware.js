@@ -1,0 +1,35 @@
+import { receiveEvent, receiveEvents } from '../actions/eventActions';
+import { createEvent, getEvent, editEvent, getEventsMonth, getEventsWeek, getEventsDay } from '../util/eventUtil';
+
+const CalendarMiddleware = ({getState, dispatch}) => next => action => {
+  switch (action.type) {
+    case 'CREATE_EVENT':
+      createEvent(action.payload.event,
+                  (event) => dispatch(receiveEvent(event)));
+      return next(action);
+    case 'GET_EVENT':
+      getEvent(action.payload.id,
+               (event) => dispatch(receiveEvent(event)));
+      return next(action);
+    case 'EDIT_EVENT':
+      editEvent(action.payload.event,
+                (event) => dispatch(receiveEvent(event)));
+      return next(action);
+    case 'GET_CALENDAR_MONTH':
+      getEventsMonth(action.payload,
+                     (events) => dispatch(receiveEvents(events)));
+      return next(action);
+    case 'GET_CALENDAR_WEEK':
+      getEventsWeek(action.payload,
+                    (events) => dispatch(receiveEvents(events)));
+      return next(action);
+    case 'GET_CALENDAR_DAY':
+      getEventsDay(action.payload,
+                   (events) => dispatch(receiveEvents(events)));
+      return next(action);
+    default:
+      return next(action);
+  }
+}
+
+export default CalendarMiddleware;
