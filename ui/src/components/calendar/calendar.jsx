@@ -10,19 +10,65 @@ import { getCalendars } from '../../actions/userActions';
 //   2. get calendar information
 //   3. pass approprate props into subcomponents
 
+import DayCalendarComponent from './dayCalendar';
+import WeekCalendarComponent from './weekCalendar';
+import MonthCalendarComponent from './monthCalendar';
+
 class CalendarComponent extends Component {
   constructor (props) {
     super (props);
+
+    // Filters: 1 = month, 2 = week, 3 = day
+    this.state = {
+      filter: 1
+    };
+
+    this.switchFilter = this.switchFilter.bind(this);
+    this.renderFilters = this.renderFilters.bind(this);
+    this.displayCalendar = this.displayCalendar.bind(this);
   }
 
   componentDidMount () {
     this.props.getCalendars(this.props.userId);
   }
 
+  switchFilter (evt, filter) {
+    evt.preventDefault();
+
+    this.setState({ filter });
+  }
+
+  renderFilters () {
+    return (
+      <div className="row">
+        <a onClick={(evt) => this.switchFilter(evt, 1)}>Month</a>
+        <a onClick={(evt) => this.switchFilter(evt, 2)}>Week</a>
+        <a onClick={(evt) => this.switchFilter(evt, 3)}>Day</a>
+      </div>
+    );
+  }
+
+  displayCalendar () {
+    switch(this.state.filter) {
+      case 1:
+        return (<MonthCalendarComponent />);
+      case 2:
+        return (<WeekCalendarComponent />);
+      case 3:
+        return (<DayCalendarComponent />);
+    }
+  }
+
   render () {
+    console.log(this.props.calendars);
+    const calendarFilters = this.renderFilters();
+
+    const calendar = this.displayCalendar();
+
     return (
       <div>
-        <h1>My Calendar</h1>
+        { calendarFilters }
+        { calendar }
       </div>
     );
   }

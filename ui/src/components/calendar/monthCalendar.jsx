@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 class MonthCalendarComponent extends Component {
   constructor (props) {
-
+    super (props);
   }
 
   render () {

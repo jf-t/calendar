@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 class DayCalendarComponent extends Component {
   constructor (props) {
-
+    super (props);
   }
 
   render () {
