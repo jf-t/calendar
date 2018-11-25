@@ -24,48 +24,50 @@
       email, (string)
       password, (string)
     Response:
-      { email, user_id }
+      { id, email }
 
 ### POST `/auth`
     Body:
       email, (string)
       password (string)
     Response
-      { email, user_id, session_token }
+      { id, email, session }
 
 ### GET `/user/:id`
     Params:
       id (int)
     Response:
-      { email, user_id }
+      { id, email }
 
 ### DELETE `/logout`
     Body:
       id (int)
     Response:
-      { email, user_id }
+      (success message)
 
 ### GET `/user/:id/calendars`
     Params:
       id (int)
     Response:
-      [{ id, name, user_id }]
+      [{ id, name, userId }]
     Description:
-      Every calendar that this user is a part of
+      Every calendar that this user is a part of.
+      If a user has no calendars, return empty array.
+      If user does not exist, return error
 
 ## Calendar Routes
 ### POST `/calendar`
     Body:
-      user_id, (int)
+      userId, (int)
       name (string)
     Response:
-      { id, name, user_id }
+      { id, name, userId }
 
 ### GET `/calendar/:id`
     Params:
       id (int)
     Response:
-      { id, name, user_id }
+      { id, name, userId }
 
 ### PUT `/calendar/:id`
     Params:
@@ -73,7 +75,7 @@
     Body:
       name (string)
     Response:
-      { id, name, user_id }
+      { id, name, userId }
 
 ### GET `/calendar/:id/events`
     Params:
@@ -81,7 +83,7 @@
     Body:
       (undecided)
     Response:
-      [{ id, name, calendar_id, start_time, end_time }]
+      [{ id, name, calendarId, startTime, endTime }]
     Description:
       This is the core search functionality of getting events for a certain time period. I will work with you for flexibility to decide the best solution
 
@@ -94,13 +96,13 @@
       start_time, (string)
       end_time (string)
     Response:
-      { id, name, calendar_id, start_time, end_time }
+      { id, name, calendarId, startTime, endTime }
 
 ### GET `/event/:id`
     Params:
       id (int)
     Response:
-      { id, name, calendar_id, start_time, end_time }
+      { id, name, calendarId, startTime, endTime }
 
 ### PUT `/event/:id`
     Params:
@@ -111,7 +113,7 @@
       start_time, (string)
       end_time (string)
     Response:
-      { id, name, calendar_id, start_time, end_time }
+      { id, name, calendarId, startTime, endTime }
 
 ### DELETE `/event/:id`
     Params:
