@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { login } from '../../actions/userActions';
+import { loginWithCreds } from '../../actions/userActions';
 
 class LoginComponent extends Component {
   constructor (props) {
@@ -12,7 +12,6 @@ class LoginComponent extends Component {
       password: ''
     };
 
-    console.log(this.props);
     this.changeInput = this.changeInput.bind(this);
     this.submit = this.submit.bind(this);
   }
@@ -27,14 +26,14 @@ class LoginComponent extends Component {
   }
 
   render () {
-    if (this.props.user.activeUser) {
+    if (this.props.user) {
       return (<Redirect to='/' />);
     } else {
       let error = "";
-      
-      if (this.props.user.error) {
+
+      if (this.props.error) {
         error = (<div className="error">
-                   <p>{this.props.user.error.error}</p>
+                   <p>{this.props.error.error}</p>
                  </div>);
       }
       return (<div>
@@ -50,11 +49,12 @@ class LoginComponent extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user.activeUser,
+  error: state.user.error
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: (creds) => dispatch(login(creds))
+  login: (creds) => dispatch(loginWithCreds(creds))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps) (LoginComponent);

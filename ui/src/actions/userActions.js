@@ -3,9 +3,18 @@ export const createUser = user => ({
   payload: { user }
 });
 
-export const login = creds => ({
-  type: 'LOGIN',
+export const loginWithSession = session => ({
+  type: 'LOGIN_WITH_SESSION',
+  payload: { session }
+});
+
+export const loginWithCreds = creds => ({
+  type: 'LOGIN_WITH_CREDS',
   payload: { creds }
+});
+
+export const getSession = () => ({
+  type: 'GET_SESSION'
 });
 
 export const logout = id => ({

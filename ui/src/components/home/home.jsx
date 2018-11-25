@@ -1,12 +1,29 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 
-import { CalendarComponent } from '../calendar/calendar';
+import CalendarComponent from '../calendar/calendar';
 
 class HomeComponent extends Component {
+  constructor (props) {
+    super(props);
+  }
+
   render () {
-    return (<div>Home Page!</div>);
+    if (this.props.user) {
+      return (<CalendarComponent />);
+    } else {
+      return (<Redirect to="/login" />);
+    }
   }
 }
 
-export default connect()(HomeComponent);
+const mapStateToProps = state => ({
+  user: state.user.activeUser
+});
+
+const mapDispatchToProps = dispatch => ({});
+
+
+export default connect(mapStateToProps, mapDispatchToProps) (HomeComponent);
