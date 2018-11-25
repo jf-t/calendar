@@ -8,22 +8,25 @@ class EventComponent extends Component {
   constructor (props) {
     super(props);
 
-    console.log(props);
-
-    this.state = {
-      eventId: 1,
-      event: props.event.activeEvent };
+    this.state = { eventId: (props.match.params.id ?
+                             parseInt(props.match.params.id) :
+                             null) };
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.props.getEvent(this.state.eventId);
   }
 
   render () {
-    if (this.state.event) {
+    console.log(this.props);
+    let activeEvent = this.props.event.activeEvent;
+
+    console.log(activeEvent);
+
+    if (activeEvent) {
       return (<div>
-                <h1>{ this.state.event.name }</h1>
-                <h2> { this.state.event.calendarId }</h2>
+                <h1>{ activeEvent.name }</h1>
+                <h2> { activeEvent.calendarId }</h2>
               </div>);
     } else {
       return (<div>
