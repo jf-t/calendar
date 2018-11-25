@@ -6,6 +6,8 @@ const CalendarReducer = (state = {}, action) => {
       return merge(state, { calendars: action.payload.calendars });
     case 'RECEIVE_CALENDAR':
       return merge(state, { activeCalendar: action.payload.calendar });
+    case 'CALENDAR_ERROR':
+      return merge(state, { error: action.payload.error });
     default:
       return state;
   }
