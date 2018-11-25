@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { createUser } from '../../actions/userActions';
+import { login } from '../../actions/userActions';
 
-class SignupComponent extends Component {
+class LoginComponent extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -20,7 +20,7 @@ class SignupComponent extends Component {
   }
 
   submit () {
-    this.props.signup(this.state);
+    this.props.login(this.state);
   }
 
   render () {
@@ -31,7 +31,7 @@ class SignupComponent extends Component {
                 <form onSubmit={this.submit}>
                   <input type="text" placeholder="Email" value={this.state.email} onChange={(e) => this.changeInput('email', e.target.value)} />
                   <input type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.changeInput('password', e.target.value)} />
-                  <input type="submit" value="Sign Up" />
+                  <input type="submit" value="Sign in" />
                 </form>
               </div>);
     }
@@ -43,7 +43,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  signup: createUser
+  login: login
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignupComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent);
