@@ -31,6 +31,7 @@ class LoginComponent extends Component {
       return (<Redirect to='/' />);
     } else {
       let error = "";
+      
       if (this.props.user.error) {
         error = (<div className="error">
                    <p>{this.props.user.error.error}</p>
@@ -56,4 +57,4 @@ const mapDispatchToProps = dispatch => ({
   login: (creds) => dispatch(login(creds))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent);
+export default connect(mapStateToProps, mapDispatchToProps) (LoginComponent);

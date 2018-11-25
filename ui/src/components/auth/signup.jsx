@@ -30,6 +30,7 @@ class SignupComponent extends Component {
       return (<Redirect to='/' />);
     } else {
       let error = "";
+      
       if (this.props.user.error) {
         error = (<div className="error">
                    <p>{this.props.user.error.error}</p>

@@ -20,7 +20,7 @@ export const getEvents = (id, month) => ({
 
 
 export const receiveCalendar = calendar => ({
-  type: 'RECEIVE_CALENDARS',
+  type: 'RECEIVE_CALENDAR',
   payload: { calendar }
 });
 
