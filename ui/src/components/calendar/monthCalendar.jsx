@@ -50,7 +50,7 @@ class MonthCalendarComponent extends Component {
     let daysInFirstWeek = 7 - monthFirstDay;
 
     let firstWeek = [];
-    for (let i of [...Array().keys()]) {
+    for (let i of [...Array(daysInFirstWeek).keys()]) {
       firstWeek.push({day: i});
     };
 
