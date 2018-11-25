@@ -27,7 +27,7 @@ class Root extends Component {
           <Route exact path="/login" component={ LoginComponent } />
           <Route exact path="/signup" component={ SignupComponent } />
 
-          <Route path="/event/:id" component={ EventComponent } />
+          <Route exact path="/event/:id" component={ EventComponent } />
         </Switch>
       </BrowserRouter>
     );

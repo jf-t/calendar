@@ -19,6 +19,7 @@ class CalendarComponent extends Component {
     super (props);
 
     // Filters: 1 = month, 2 = week, 3 = day
+    // TODO: at some point this needs to be set in localStorage
     this.state = {
       filter: 1
     };
