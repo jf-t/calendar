@@ -11,9 +11,9 @@ class Root extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/" component={ HomeComponent } />
-          <Route path="/login" component={ LoginComponent } />
-          <Route path="/signup" component={ SignupComponent } />
+          <Route exact path="/" component={ HomeComponent } />
+          <Route exact path="/login" component={ LoginComponent } />
+          <Route exact path="/signup" component={ SignupComponent } />
           </Switch>
       </BrowserRouter>
     );

@@ -19,7 +19,8 @@ class SignupComponent extends Component {
     this.setState({[key]: val});
   }
 
-  submit () {
+  submit (e) {
+    e.preventDefault();
     this.props.signup(this.state);
   }
 
@@ -43,7 +44,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  signup: createUser
+  signup: (user) => dispatch(createUser(user))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupComponent);

@@ -1,10 +1,12 @@
 // These are filled with mock data until API is done
 
 export const createUser = (user, success, error) => {
+  console.log("createUser", user);
   success({ id: 1, email: 'jackftilly@gmail.com' });
 }
 
 export const login = (creds, success, error) => {
+  console.log("login", creds);
   if (creds.email === 'jackftilly@gmail.com' && creds.password === 'password') {
     success({ id: 1, email: 'jackftilly@gmail.com', session: 'SAMPLE_SESSION_TOKEN' });
   } else {

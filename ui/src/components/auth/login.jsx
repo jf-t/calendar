@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { login } from '../../actions/userActions';
@@ -11,6 +12,7 @@ class LoginComponent extends Component {
       password: ''
     };
 
+    console.log(this.props);
     this.changeInput = this.changeInput.bind(this);
     this.submit = this.submit.bind(this);
   }
@@ -19,15 +21,24 @@ class LoginComponent extends Component {
     this.setState({[key]: val});
   }
 
-  submit () {
+  submit (e) {
+    e.preventDefault();
     this.props.login(this.state);
   }
 
   render () {
-    if (this.props.user) {
-      // re route to home page
+    if (this.props.user.activeUser) {
+      console.log(this.props.user.activeUser);
+      return (<Redirect to='/' />);
     } else {
+      let error = "";
+      if (this.props.user.error) {
+        error = (<div className="error">
+                   <p>{this.props.user.error.error}</p>
+                 </div>);
+      }
       return (<div>
+                {error}
                 <form onSubmit={this.submit}>
                   <input type="text" placeholder="Email" value={this.state.email} onChange={(e) => this.changeInput('email', e.target.value)} />
                   <input type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.changeInput('password', e.target.value)} />
@@ -43,7 +54,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: login
+  login: (creds) => dispatch(login(creds))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent);

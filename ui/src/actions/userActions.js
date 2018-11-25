@@ -27,3 +27,8 @@ export const receiveUser = user => ({
   type: 'RECEIVE_USER',
   payload: { user }
 });
+
+export const showErrors = err => ({
+  type: 'USER_ERROR',
+  payload: { error: err }
+});
