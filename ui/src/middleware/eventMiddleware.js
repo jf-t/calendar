@@ -1,4 +1,4 @@
-import { receiveEvent, receiveEvents } from '../actions/eventActions';
+import { receiveEvent, receiveEvents, showErrors } from '../actions/eventActions';
 import { createEvent, getEvent, editEvent, getEvents } from '../util/eventUtil';
 
 const CalendarMiddleware = ({getState, dispatch}) => next => action => {
@@ -9,7 +9,8 @@ const CalendarMiddleware = ({getState, dispatch}) => next => action => {
       return next(action);
     case 'GET_EVENT':
       getEvent(action.payload.id,
-               (event) => dispatch(receiveEvent(event)));
+               (event) => dispatch(receiveEvent(event)),
+               (err) => dispatch(showErrors(err)));
       return next(action);
     case 'EDIT_EVENT':
       editEvent(action.payload.event,

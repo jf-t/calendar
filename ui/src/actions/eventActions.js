@@ -27,3 +27,8 @@ export const receiveEvents = events => ({
   type: 'RECEIVE_EVENTS',
   payload: { events }
 });
+
+export const showErrors = err => ({
+  type: 'EVENT_ERROR',
+  payload: { error: err }
+});

@@ -8,8 +8,10 @@ class EventComponent extends Component {
   constructor (props) {
     super(props);
 
+    console.log(props);
+
     this.state = {
-      eventId:
+      eventId: 1,
       event: props.event.activeEvent };
   }
 

@@ -7,6 +7,8 @@ const EventReducer = (state = {}, action) => {
       return merge (state, { activeEvent: action.payload.event });
     case 'RECEIVE_EVENTS':
       return merge (state, { events: action.payload.events });
+    case 'EVENT_ERROR':
+      return merge(state, { error: action.payload.error });
     default:
       return state;
   }
