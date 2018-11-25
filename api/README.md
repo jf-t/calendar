@@ -67,7 +67,7 @@
     Response:
       { id, name, user_id }
 
-### GET `/calendar/:id/range`
+### GET `/calendar/:id/events`
     Params:
       id, (int)
     Body:
