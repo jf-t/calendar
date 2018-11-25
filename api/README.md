@@ -45,6 +45,14 @@
     Response:
       { email, user_id }
 
+### GET `/user/:id/calendars`
+    Params:
+      id (int)
+    Response:
+      [{ id, name, user_id }]
+    Description:
+      Every calendar that this user is a part of
+
 ## Calendar Routes
 ### POST `/calendar`
     Body:
