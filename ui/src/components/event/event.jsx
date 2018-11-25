@@ -18,10 +18,7 @@ class EventComponent extends Component {
   }
 
   render () {
-    console.log(this.props);
     let activeEvent = this.props.event.activeEvent;
-
-    console.log(activeEvent);
 
     if (activeEvent) {
       return (<div>
