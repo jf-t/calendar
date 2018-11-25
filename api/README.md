@@ -51,13 +51,13 @@
       user_id, (int)
       name (string)
     Response:
-      { name, user_id }
+      { id, name, user_id }
 
 ### GET `/calendar/:id`
     Params:
       id (int)
     Response:
-      { name, user_id }
+      { id, name, user_id }
 
 ### PUT `/calendar/:id`
     Params:
@@ -65,7 +65,7 @@
     Body:
       name (string)
     Response:
-      { name, user_id }
+      { id, name, user_id }
 
 ### GET `/calendar/:id/range`
     Params:
@@ -73,6 +73,40 @@
     Body:
       (undecided)
     Response:
-      [{ start_time, end_time, name, calendar_id }]
+      [{ id, name, calendar_id, start_time, end_time }]
     Description:
       This is the core search functionality of getting events for a certain time period. I will work with you for flexibility to decide the best solution
+
+
+## Event Routes
+### POST `/event`
+    Body:
+      calendar_id, (int)
+      name, (string)
+      start_time, (string)
+      end_time (string)
+    Response:
+      { id, name, calendar_id, start_time, end_time }
+
+### GET `/event/:id`
+    Params:
+      id (int)
+    Response:
+      { id, name, calendar_id, start_time, end_time }
+
+### PUT `/event/:id`
+    Params:
+      id (int)
+    Body:
+      calendar_id, (int)
+      name, (string)
+      start_time, (string)
+      end_time (string)
+    Response:
+      { id, name, calendar_id, start_time, end_time }
+
+### DELETE `/event/:id`
+    Params:
+      id (int)
+    Response:
+      (success message)
