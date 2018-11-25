@@ -28,7 +28,6 @@ class LoginComponent extends Component {
 
   render () {
     if (this.props.user.activeUser) {
-      console.log(this.props.user.activeUser);
       return (<Redirect to='/' />);
     } else {
       let error = "";

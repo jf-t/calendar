@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { createUser } from '../../actions/userActions';
@@ -26,9 +27,16 @@ class SignupComponent extends Component {
 
   render () {
     if (this.props.user) {
-      // re route to home page
+      return (<Redirect to='/' />);
     } else {
+      let error = "";
+      if (this.props.user.error) {
+        error = (<div className="error">
+                   <p>{this.props.user.error.error}</p>
+                 </div>);
+      }
       return (<div>
+                {error}
                 <form onSubmit={this.submit}>
                   <input type="text" placeholder="Email" value={this.state.email} onChange={(e) => this.changeInput('email', e.target.value)} />
                   <input type="password" placeholder="Password" value={this.state.password} onChange={(e) => this.changeInput('password', e.target.value)} />
