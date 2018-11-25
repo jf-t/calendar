@@ -1,5 +1,5 @@
 import { receiveEvent, receiveEvents } from '../actions/eventActions';
-import { createEvent, getEvent, editEvent, getEventsMonth, getEventsWeek, getEventsDay } from '../util/eventUtil';
+import { createEvent, getEvent, editEvent, getEvents } from '../util/eventUtil';
 
 const CalendarMiddleware = ({getState, dispatch}) => next => action => {
   switch (action.type) {
@@ -15,17 +15,9 @@ const CalendarMiddleware = ({getState, dispatch}) => next => action => {
       editEvent(action.payload.event,
                 (event) => dispatch(receiveEvent(event)));
       return next(action);
-    case 'GET_CALENDAR_MONTH':
-      getEventsMonth(action.payload,
+    case 'GET_EVENTS':
+      getEvents(action.payload,
                      (events) => dispatch(receiveEvents(events)));
-      return next(action);
-    case 'GET_CALENDAR_WEEK':
-      getEventsWeek(action.payload,
-                    (events) => dispatch(receiveEvents(events)));
-      return next(action);
-    case 'GET_CALENDAR_DAY':
-      getEventsDay(action.payload,
-                   (events) => dispatch(receiveEvents(events)));
       return next(action);
     default:
       return next(action);

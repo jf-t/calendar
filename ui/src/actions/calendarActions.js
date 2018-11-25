@@ -13,20 +13,11 @@ export const editCalendar = (id, calendar) => ({
   payload: { id, calendar }
 });
 
-export const getCalendarMonth = (id, month) => ({
-  type: 'GET_CALENDAR_MONTH',
+export const getEvents = (id, month) => ({
+  type: 'GET_EVENTS',
   payload: { id, month }
 });
 
-export const getCalendarWeek = (id, week) => ({
-  type: 'GET_CALENDAR_WEEK',
-  payload: { id, week }
-});
-
-export const getCalendarDay = (id, day) => ({
-  type: 'GET_CALENDAR_DAY',
-  payload: { id, day }
-});
 
 export const receiveCalendar = calendar => ({
   type: 'RECEIVE_CALENDARS',
