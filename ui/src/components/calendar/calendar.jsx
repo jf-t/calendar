@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { getCalendars } from '../../actions/userActions';
 
+import './calendar.scss';
 // TODO: there will be a lot of logic in this file, i might end up creating helper
 //         files to display certain information:
 //   1. create filters for switching between day, month, and week view
@@ -64,10 +65,14 @@ class CalendarComponent extends Component {
     console.log(this.props.calendars);
     const calendarFilters = this.renderFilters();
 
-    const calendar = this.displayCalendar();
+    const calendar = (
+      <div className="calendar">
+        { this.displayCalendar() }
+      </div>
+    );
 
     return (
-      <div>
+      <div className="calendarWrapper">
         { calendarFilters }
         { calendar }
       </div>

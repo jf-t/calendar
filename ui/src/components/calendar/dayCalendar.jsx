@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-
 class DayCalendarComponent extends Component {
   constructor (props) {
     super (props);
 
     this.renderDay = this.renderDay.bind(this);
+    this.todaysDate = this.todaysDate.bind(this);
   }
 
   renderDay () {
@@ -39,11 +39,26 @@ class DayCalendarComponent extends Component {
     );
   }
 
+  todaysDate () {
+    let date = new Date();
+
+    let months = ['January', 'February', 'March', 'April', 'May', 'June',
+                  'July', 'August', 'September', 'October', 'November', 'December'];
+
+    let month = months[date.getMonth()];
+    let year = date.getFullYear();
+    let day = date.getDate();
+
+    return `${month} ${day}, ${year}`;
+  }
+
   render () {
     let day = this.renderDay();
+
+    let currentDay = this.todaysDate();
     return (
       <div>
-        <h1>Day Calendar</h1>
+        <h1>{ currentDay }</h1>
 
         { day }
       </div>
