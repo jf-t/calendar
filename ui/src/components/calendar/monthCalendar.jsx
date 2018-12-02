@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
+import { formatMonth } from '../../util/calendarUtil';
+
 // TODO: create array of days inside week objects for displaying in render functions
 class MonthCalendarComponent extends Component {
   constructor (props) {
@@ -19,7 +21,7 @@ class MonthCalendarComponent extends Component {
   }
 
   componentDidMount () {
-    this.formatMonth();
+    this.props.formatMonth();
   }
 
   displayEvents () {
@@ -33,29 +35,7 @@ class MonthCalendarComponent extends Component {
       });
     });
   }
-
-  formatMonth () {
-    // In here i need to create a double array of day and week objects to be rendered
-
-    let time = new Date();
-
-    // get current month, week, day
-    // loop through this.props.events for each day and set colors for each
-    let currentMonth = time.getMonth(); // 0 - 11
-    let currentDay = time.getDate(); // 1 - 31
-    let dayOfWeek = time.getDay(); // 0 (sunday) - 6 (saturday)
-
-    time.setDate(1);
-    let monthFirstDay = time.getDay();
-    let daysInFirstWeek = 7 - monthFirstDay;
-
-    let firstWeek = [];
-    for (let i of [...Array(daysInFirstWeek).keys()]) {
-      firstWeek.push({day: i});
-    };
-
-    console.log(firstWeek);
-  }
+  
 
   renderDay (day) {
     return (
@@ -102,7 +82,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  formatMonth
 });
 
 export default connect() (MonthCalendarComponent);
