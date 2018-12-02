@@ -13,8 +13,6 @@ class MonthCalendarComponent extends Component {
       formattedDays: []
     };
 
-    this.formatMonth = this.formatMonth.bind(this);
-
     this.renderDay = this.renderDay.bind(this);
     this.renderWeek = this.renderWeek.bind(this);
     this.renderMonth = this.renderMonth.bind(this);
@@ -35,7 +33,7 @@ class MonthCalendarComponent extends Component {
       });
     });
   }
-  
+
 
   renderDay (day) {
     return (
