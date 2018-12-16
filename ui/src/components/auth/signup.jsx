@@ -17,7 +17,7 @@ class SignupComponent extends Component {
   }
 
   changeInput (key, val) {
-    this.setState({[key]: val});
+    this.setState({ [key]: val });
   }
 
   submit (e) {
@@ -30,7 +30,7 @@ class SignupComponent extends Component {
       return (<Redirect to='/' />);
     } else {
       let error = "";
-      
+
       if (this.props.user.error) {
         error = (<div className="error">
                    <p>{this.props.user.error.error}</p>

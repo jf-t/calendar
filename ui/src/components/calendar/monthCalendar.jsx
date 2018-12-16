@@ -10,8 +10,8 @@ class MonthCalendarComponent extends Component {
     super (props);
 
     this.state = {
-      formattedDays: []
-    };
+      formattedMonth: []
+    }
 
     this.renderDay = this.renderDay.bind(this);
     this.renderWeek = this.renderWeek.bind(this);
@@ -19,34 +19,42 @@ class MonthCalendarComponent extends Component {
   }
 
   componentDidMount () {
-    this.props.formatMonth();
+    this.setState({ formattedMonth: this.props.formatMonth(this.props.monthData) });
   }
 
-  displayEvents () {
-    this.calendars.forEach(calendar => {
-      calendar.events.forEach(evt => {
-        let startTime = new Date(evt.startTime);
-        let endTime = new Date(evt.endTime);
+  displayEvents (events) {
+    let eventEls = [];
 
-        let dayDifference = endTime.getDate() - startTime.getDate() + 1;
-        let days = [...Array(31).keys()].splice(startTime.getDate(), dayDifference);
-      });
+    // forEach is safe to use because this case does not need to break
+    events.forEach(event => {
+      eventEls.push(
+        <div className="event">
+          <span className="calendar-color">{ event.color }</span>
+          <span className="calendar-time">{ event.time }</span>
+          <span className="calendar-name">{ event.name }</span>
+        </div>
+      );
     });
   }
 
 
   renderDay (day) {
+    let events = this.renderEvents(day.events);
+
     return (
       <div className="day">
-        { day }
+        <h1 className={"day-number " + (day.current ? 'current' : '')}>
+          { day.number }
+        </h1>
+        <div className="day-events">
+          { events }
+        </div>
       </div>
     );
   }
 
   renderWeek (week) {
-    const days = week.map(day => {
-      return this.renderDay(day);
-    });
+    const days = week.map(this.renderDay);
 
     return (
       <div className="week">
@@ -55,15 +63,19 @@ class MonthCalendarComponent extends Component {
     );
   }
 
-  renderMonth () {
-    const weeks = this.state.formattedDays.forEach(week => {
-      return this.renderWeek(week);
-    });
+  renderMonth (month) {
+    const weeks = month.map(this.renderWeek);
+
+    return (
+      <div className="month">
+        { weeks }
+      </div>
+    );
   }
 
   render () {
     let calendar = 'loading...';
-    if (this.state.formattedDays.length > 0) {
+    if (this.state.formattedMonth.length > 0) {
       calendar = this.renderMonth();
     }
 
@@ -76,11 +88,11 @@ class MonthCalendarComponent extends Component {
 }
 
 const mapStateToProps = state => ({
-  calendars: state.calendars.calendars
+  monthData: state.calendars
 });
 
 const mapDispatchToProps = dispatch => ({
   formatMonth
 });
 
-export default connect() (MonthCalendarComponent);
+export default connect(mapStateToProps, mapDispatchToProps) (MonthCalendarComponent);

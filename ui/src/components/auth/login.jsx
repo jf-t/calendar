@@ -17,7 +17,7 @@ class LoginComponent extends Component {
   }
 
   changeInput (key, val) {
-    this.setState({[key]: val});
+    this.setState({ [key]: val });
   }
 
   submit (e) {
