@@ -3,8 +3,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { getCalendars } from '../../actions/userActions';
+import { changeFilter } from '../../actions/calendarActions';
 
 import './calendar.scss';
+
+
 // TODO: there will be a lot of logic in this file, i might end up creating helper
 //         files to display certain information:
 //   1. create filters for switching between day, month, and week view
@@ -19,39 +22,18 @@ class CalendarComponent extends Component {
   constructor (props) {
     super (props);
 
-    // Filters: 1 = month, 2 = week, 3 = day
-    // TODO: at some point this needs to be set in localStorage
-    this.state = {
-      filter: 1
-    };
-
-    this.switchFilter = this.switchFilter.bind(this);
-    this.renderFilters = this.renderFilters.bind(this);
     this.displayCalendar = this.displayCalendar.bind(this);
   }
 
   componentDidMount () {
+    if (!this.props.filter) {
+      this.props.changeFilter(1);
+    }
     this.props.getCalendars(this.props.userId);
   }
 
-  switchFilter (evt, filter) {
-    evt.preventDefault();
-
-    this.setState({ filter });
-  }
-
-  renderFilters () {
-    return (
-      <div className="row">
-        <a onClick={(evt) => this.switchFilter(evt, 1)}>Month</a>
-        <a onClick={(evt) => this.switchFilter(evt, 2)}>Week</a>
-        <a onClick={(evt) => this.switchFilter(evt, 3)}>Day</a>
-      </div>
-    );
-  }
-
   displayCalendar () {
-    switch(this.state.filter) {
+    switch(this.props.filter) {
       case 1:
         return (<MonthCalendarComponent />);
       case 2:
@@ -62,9 +44,6 @@ class CalendarComponent extends Component {
   }
 
   render () {
-    console.log(this.props.calendars);
-    const calendarFilters = this.renderFilters();
-
     let calendar = 'loading...';
     if (this.props.calendars) {
       calendar = (
@@ -76,7 +55,6 @@ class CalendarComponent extends Component {
 
     return (
       <div className="calendarWrapper">
-        { calendarFilters }
         { calendar }
       </div>
     );
@@ -85,11 +63,13 @@ class CalendarComponent extends Component {
 
 const mapStateToProps = state => ({
   calendars: state.calendar.calendars,
-  userId: state.user.activeUser.id
+  userId: state.user.activeUser.id,
+  filter: state.calendar.currentFilter
 });
 
 const mapDispatchToProps = dispatch => ({
-  getCalendars: (id) => dispatch(getCalendars(id))
+  getCalendars: (id) => dispatch(getCalendars(id)),
+  changeFilter: (filter) => dispatch(changeFilter(filter))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps) (CalendarComponent);

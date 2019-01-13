@@ -8,6 +8,8 @@ const CalendarReducer = (state = {}, action) => {
       return merge({}, state, { activeCalendar: action.payload.calendar });
     case 'CALENDAR_ERROR':
       return merge({}, state, { error: action.payload.error });
+    case 'CHANGE_FILTER':
+      return merge({}, state, { currentFilter: action.payload.filter })
     default:
       return state;
   }

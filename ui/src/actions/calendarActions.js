@@ -28,3 +28,8 @@ export const receiveCalendars = calendars => ({
   type: 'RECEIVE_CALENDARS',
   payload: { calendars }
 });
+
+export const changeFilter = filter => ({
+  type: 'CHANGE_FILTER',
+  payload: { filter }
+});
