@@ -21,11 +21,11 @@ class HeaderComponent extends Component {
           <div className="navigation">
             <Link className="add-event-button" to="/add-event">+</Link>
             <div className="menu">
-              <a className="filter" onClick={() => this.props.changeFilter(1)}>Day</a>
+              <a className="filter" onClick={() => this.props.changeFilter(3)}>Day</a>
               <span className="menu-divider"></span>
               <a className="filter" onClick={() => this.props.changeFilter(2)}>Week</a>
               <span className="menu-divider"></span>
-              <a className="filter" onClick={() => this.props.changeFilter(3)}>Month</a>
+              <a className="filter" onClick={() => this.props.changeFilter(1)}>Month</a>
             </div>
           </div>
         </div>
