@@ -20,11 +20,11 @@ class HeaderComponent extends Component {
           <div className="navigation">
             <a className="add-event">+</a>
             <div className="menu">
-              <a className="filter">Day</a>
+              <a className="filter" onClick={() => this.props.changeFilter(1)}>Day</a>
               <span className="menu-divider"></span>
-              <a className="filter">Week</a>
+              <a className="filter" onClick={() => this.props.changeFilter(2)}>Week</a>
               <span className="menu-divider"></span>
-              <a className="filter">Month</a>
+              <a className="filter" onClick={() => this.props.changeFilter(3)}>Month</a>
             </div>
           </div>
         </div>
@@ -41,4 +41,4 @@ const mapDispatchToProps = dispatch => ({
   changeFilter: (filter) => dispatch(changeFilter(filter))
 });
 
-export default connect () (HeaderComponent);
+export default connect (mapStateToProps, mapDispatchToProps) (HeaderComponent);

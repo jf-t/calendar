@@ -27,7 +27,7 @@ class CalendarComponent extends Component {
 
   componentDidMount () {
     if (!this.props.filter) {
-      this.props.changeFilter(1);
+      this.props.changeFilter(3);
     }
     this.props.getCalendars(this.props.userId);
   }
