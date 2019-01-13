@@ -8,6 +8,8 @@ import SignupComponent from './auth/signup';
 import HomeComponent from './home/home';
 import EventComponent from './event/event';
 
+import HeaderComponent from './header/header';
+
 import { getSession } from '../actions/userActions';
 
 class Root extends Component {
@@ -21,15 +23,19 @@ class Root extends Component {
 
   render () {
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={ HomeComponent } />
-          <Route exact path="/login" component={ LoginComponent } />
-          <Route exact path="/signup" component={ SignupComponent } />
+      <div>
+        <HeaderComponent />
+        
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={ HomeComponent } />
+            <Route exact path="/login" component={ LoginComponent } />
+            <Route exact path="/signup" component={ SignupComponent } />
 
-          <Route exact path="/event/:id" component={ EventComponent } />
-        </Switch>
-      </BrowserRouter>
+            <Route exact path="/event/:id" component={ EventComponent } />
+          </Switch>
+        </BrowserRouter>
+      </div>
     );
   }
 }
