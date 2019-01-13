@@ -24,6 +24,8 @@ export const getCalendars = (userId, success, error) => {
 
 // TODO: This will format the month of date objects to be returned back to component level
 export const formatMonth = (month) => {
+  console.log("formatMonth:");
+  console.log(month);
   let time = new Date();
 
   // get current month, week, day

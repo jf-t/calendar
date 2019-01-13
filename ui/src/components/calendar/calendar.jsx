@@ -65,11 +65,14 @@ class CalendarComponent extends Component {
     console.log(this.props.calendars);
     const calendarFilters = this.renderFilters();
 
-    const calendar = (
-      <div className="calendar">
-        { this.displayCalendar() }
-      </div>
-    );
+    let calendar = 'loading...';
+    if (this.props.calendars) {
+      calendar = (
+        <div className="calendar">
+          { this.displayCalendar() }
+        </div>
+      );
+    }
 
     return (
       <div className="calendarWrapper">

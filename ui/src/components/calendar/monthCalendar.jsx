@@ -76,7 +76,7 @@ class MonthCalendarComponent extends Component {
   render () {
     let calendar = 'loading...';
     if (this.state.formattedMonth.length > 0) {
-      calendar = this.renderMonth();
+      calendar = this.renderMonth(this.state.formattedMonth);
     }
 
     return (
@@ -88,7 +88,7 @@ class MonthCalendarComponent extends Component {
 }
 
 const mapStateToProps = state => ({
-  monthData: state.calendars
+  monthData: state.calendar.calendars
 });
 
 const mapDispatchToProps = dispatch => ({
