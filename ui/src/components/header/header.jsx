@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './header.scss';
 
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { changeFilter } from '../../actions/calendarActions';
@@ -18,7 +19,7 @@ class HeaderComponent extends Component {
             Calendar
           </div>
           <div className="navigation">
-            <a className="add-event">+</a>
+            <Link className="add-event-button" to="/add-event">+</Link>
             <div className="menu">
               <a className="filter" onClick={() => this.props.changeFilter(1)}>Day</a>
               <span className="menu-divider"></span>
