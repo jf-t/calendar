@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Layout from '../layout/layout';
+
 import { connect } from 'react-redux';
 
 import { getCalendars } from '../../actions/userActions';
@@ -54,9 +56,12 @@ class CalendarComponent extends Component {
     }
 
     return (
-      <div className="calendarWrapper">
-        { calendar }
-      </div>
+      <Layout location={this.props.location}
+              history={this.props.history}>
+        <div className="calendarWrapper">
+          { calendar }
+        </div>
+      </Layout>
     );
   }
 }

@@ -26,7 +26,6 @@ class Root extends Component {
     return (
       <BrowserRouter>
         <div>
-          <HeaderComponent />
           <Switch>
             <Route exact path="/" component={ HomeComponent } />
             <Route exact path="/login" component={ LoginComponent } />

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Layout from '../layout/layout';
+
 import { connect } from 'react-redux';
 
 import { createEvent } from '../../actions/eventActions';
@@ -61,37 +63,40 @@ class AddEventComponent extends Component {
 
     // Breadcrumbs can be in components util
     return (
-      <div className="add-event-page">
-        <div className="breadcrumbs">
-          <h2>Add Event</h2>
+      <Layout location={this.props.location}
+              history={this.props.history}>
+        <div className="add-event-page">
+          <div className="breadcrumbs">
+            <h2>Add Event</h2>
+          </div>
+
+          <form onSubmit={this.createEvent}>
+            <input type="text"
+                   onChange={this.changeInput('name')}
+                   placeholder="Event Name"></input>
+
+            <div className="flex">
+              <input type="text"
+                     onChange={this.changeInput('startDate')}
+                     placeholder="Start Date"></input>
+
+              <input type="text"
+                     onChange={this.changeInput('endDate')}
+                     placeholder="End Date"></input>
+            </div>
+
+            <div className="calendars">
+              { this.displayCalendars() }
+            </div>
+
+            <textarea onChange={this.changeInput('description')}></textarea>
+
+            <div className="create-button">
+              <input type="submit" value="Create" />
+            </div>
+          </form>
         </div>
-
-        <form onSubmit={this.createEvent}>
-          <input type="text"
-                 onChange={this.changeInput('name')}
-                 placeholder="Event Name"></input>
-
-          <div className="flex">
-            <input type="text"
-                   onChange={this.changeInput('startDate')}
-                   placeholder="Start Date"></input>
-
-            <input type="text"
-                   onChange={this.changeInput('endDate')}
-                   placeholder="End Date"></input>
-          </div>
-
-          <div className="calendars">
-            { this.displayCalendars() }
-          </div>
-
-          <textarea onChange={this.changeInput('description')}></textarea>
-
-          <div className="create-button">
-            <input type="submit" value="Create" />
-          </div>
-        </form>
-      </div>
+      </Layout>
     );
   }
 }
