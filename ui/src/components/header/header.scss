@@ -1,0 +1,54 @@
+.header {
+  background-color: #104FBA;
+  color: #FFFFFF;
+  height: 65px;
+  width: 100%;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 40px;
+  line-height: 65px;
+}
+
+.navigation {
+  display: flex;
+  height: 65px;
+  padding: 15px 0;
+  font-size: 35px;
+  box-sizing: border-box;
+}
+
+.menu {
+  height: 35px;
+  font-size: 20px;
+  display: flex;
+  margin-left: 20px;
+}
+
+.add-event {
+  border-radius: 50%;
+  border: 1px solid #fff;
+  line-height: 28px;
+  height: 35px;
+  box-sizing: border-box;
+  width: 35px;
+  text-align: center;
+}
+
+.menu-divider {
+  content: " ";
+  border-left: 1px solid #979797;
+  height: 100%;
+  margin: 0 10px;
+}
+
+.filter {
+  line-height: 35px;
+}
