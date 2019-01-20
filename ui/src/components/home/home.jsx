@@ -12,7 +12,9 @@ class HomeComponent extends Component {
 
   render () {
     if (this.props.user) {
-      return (<CalendarComponent />);
+      return (<CalendarComponent
+                location={this.props.location}
+                history={this.props.history} />);
     } else {
       return (<Redirect to="/login" />);
     }

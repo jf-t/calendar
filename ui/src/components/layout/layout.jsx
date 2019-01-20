@@ -9,13 +9,19 @@ class LayoutComponent extends Component {
 
   render () {
     // Use this for always having header component
-    return (
-      <div>
-        <Header location={this.props.location}
-                history={this.props.history} />
-        { this.props.children }
-      </div>
-    );
+    if (this.props.location && this.props.history) {
+      return (
+        <div>
+          <Header location={this.props.location}
+            history={this.props.history} />
+          { this.props.children }
+        </div>
+      );
+    } else {
+      return (
+        <div>No props and location</div>
+      );
+    }
   }
 }
 

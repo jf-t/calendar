@@ -9,15 +9,10 @@ import HomeComponent from './home/home';
 import EventComponent from './event/event';
 
 import AddEventComponent from './add-event/add-event';
-import HeaderComponent from './header/header';
 
 import { getSession } from '../actions/userActions';
 
 class Root extends Component {
-  constructor (props) {
-    super(props);
-  }
-
   componentDidMount () {
     this.props.getSession();
   }

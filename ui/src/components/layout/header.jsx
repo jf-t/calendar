@@ -9,6 +9,8 @@ import { changeFilter } from '../../actions/calendarActions';
 class HeaderComponent extends Component {
   constructor (props) {
     super (props);
+
+    this.changeFilter = this.changeFilter.bind(this);
   }
 
   changeFilter (filter) {
