@@ -1,44 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React/Redux
 
-## Available Scripts
+Here I am going to try to plan out as much as I can before I go back to working on the real site.
 
-In the project directory, you can run:
+Just in case i forget, to run:
+```
+npm start
+```
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Components:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Layout Component:
+There is a layout component that will contain the `Header` and `Footer` components, as well as displaying `this.props.children` as it will be used as a reusable component throughout.
 
-### `npm test`
+### Header Component:
+Displays 3 filters, add button, and logo (for now). These 3 filters fire `this.props.changeFilter` and the add button fires `this.props.addEvent` to send the user to the add event page.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Login:
+The login component is exactly what you would expect from auth. Username/password with submit button. If the login page is accessed with localStorage user already existing, it should automatically route the user to `/`
 
-### `npm run build`
+### Calendar:
+The calendar is going to contain all of the necessary work for the calendars. This is going to use the <Layout> component and use `this.props.filter` as a way to change between Week, Day, and Month views.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Month View:
+The month view component needs to contain some solid logic for displaying the entire month. The month should display in 4-6 rows the entire month by each day, and the first few events for those days. The events with dates need to be compiled in a formatter function, by going through the events in every calendar that is currently being displayed and by using startDate and endDate, show each day as a compilation of all the events. This logic is going to be pretty tough, and I am going to have to explain how I am going to do it below.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Logical Functions:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Displaying Month View:
+When either the visible calendars, or the date range, change, there needs to be logic to format the month that is currently in view with all of the events that are in the visible calendars. This will take some sort of fancy logic for probably doing a double loop over the events and the days and displaying each day as an object, with an events array to display, along with the day number. Each event has to carry an ID, name, time, and calendar color.
 
-### `npm run eject`
+Events will be passed in as an array of startDate, endDate, name, ID, and calendar. The algo will have to loop through this array and for each event, pass it into the necessary dates. I don't really know how this will happen yet, I will come back to it.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This logic will have to be repeated for the day and week views, which probably will end up having to be the same function. Passing in a range of dates and the array of calendar objects, it should return nested arrays of days to be displayed (or just one day if dayView).
