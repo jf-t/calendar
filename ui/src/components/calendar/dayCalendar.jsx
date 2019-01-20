@@ -29,7 +29,7 @@ class DayCalendarComponent extends Component {
 
     let currentDay = this.todaysDate();
     return (
-      <div>
+      <div className="day">
         <h1>{ currentDay }</h1>
 
         { day }

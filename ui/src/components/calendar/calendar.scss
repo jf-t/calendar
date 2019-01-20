@@ -1,9 +1,14 @@
-.calendar .hour {
-  height: 50px;
-  border-top: 1px solid #333;
+.calendar {
+  .day .hour {
+    border: 1px solid;
+  }
 
-  &:last-child {
-    border-bottom: 1px solid #333;
+  .hour {
+    height: 50px;
+
+    &:last-child {
+      border-bottom: 1px solid #333;
+    }
   }
 }
 
@@ -11,6 +16,10 @@
   display: flex;
 }
 
-.calendar .day {
+.calendar .dayView {
   width: 100%;
+}
+
+.dayContainer {
+  border: 1px solid;
 }

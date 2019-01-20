@@ -8,7 +8,7 @@ class DayViewComponent extends Component {
 
     this.renderDay = this.renderDay.bind(this);
   }
-  
+
   renderDay () {
     let hours = [];
     for (var i = 0; i < 24; i++) {
@@ -20,7 +20,6 @@ class DayViewComponent extends Component {
       let hour = (
         <div className="hour">
           <span className="hourIndication">
-            { formattedHour }
           </span>
           <div className="hourBlock">
 
@@ -43,7 +42,7 @@ class DayViewComponent extends Component {
     let day = this.renderDay();
 
     return (
-      <div className="day">
+      <div className="dayView">
         { day }
       </div>
     );
